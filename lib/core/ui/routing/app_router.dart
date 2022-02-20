@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:wayve_test_app/core/ui/routing/page_route.dart';
+import 'package:wayve_test_app/core/utils/splash_screen/splash_screen.dart';
+import 'package:wayve_test_app/features/user_status/presentation/screens/user_list_screen.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return AppPageRoute.routeTo(builder: (_) => const Scaffold(
-          body: Center(
-            child: Text('Splash Screen'),
-          ),
-        ));
+        return AppPageRoute.routeTo(builder: (_) => SplashScreen());
+      case '/home':
+        return AppPageRoute.routeTo(builder: (_)=> UserListScreen());
       default:
         return AppPageRoute.routeTo(
           builder: (_) => const Scaffold(

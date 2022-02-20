@@ -3,14 +3,14 @@ import 'package:wayve_test_app/core/utils/config_reader.dart';
 
 class Config {
   Environment? envStatus;
-  String? baseURL;
+  String? baseUrl;
 
   Config() {
 
     if (envStatus == Environment.prod) {
-      baseURL = ConfigReader.getProdUrl()!;
+      baseUrl = ConfigReader.getProdUrl()!;
     } else {
-      baseURL = ConfigReader.getDevUrl()!;
+      baseUrl = ConfigReader.getDevUrl()!;
     }
   }
 }

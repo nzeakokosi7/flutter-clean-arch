@@ -4,7 +4,7 @@
 /// or, `ServiceState.error` with an error message and/or data. (use `ServerError` class)
 
 class ServiceState<T> {
-  ServiceState._(); // private constructor
+  ServiceState._();
   factory ServiceState.success(T value) = SuccessState<T>;
 
   factory ServiceState.error(T msg) = ErrorState<T>;

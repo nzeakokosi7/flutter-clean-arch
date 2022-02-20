@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:wayve_test_app/core/api/server_error.dart';
 import 'package:wayve_test_app/core/api/service_state.dart';
 import 'package:wayve_test_app/core/enums/server_error_types.dart';
+import 'package:wayve_test_app/core/utils/app_logger.dart';
 import 'package:wayve_test_app/core/utils/constants.dart';
 import 'package:wayve_test_app/core/utils/error_helper_messages.dart';
 import 'config.dart';
@@ -15,13 +16,15 @@ class HttpHelper {
   static final _config = Config();
   static String baseURL =_config.baseUrl!;
 
-  static Future<Dio> _getInstance() async {
+  static Future<Dio> _getInstance({
+   String? overridingRoute,
+  }) async {
 
     Map<String, dynamic> headers = {};
     headers['Content-Type'] = 'application/json';
 
     _client.options.headers = headers;
-    _client.options.baseUrl = baseURL;
+    _client.options.baseUrl = overridingRoute ?? baseURL;
     _client.options.setRequestContentTypeWhenNoPayload = true;
     _client.options.contentType = 'application/json';
     _client.options.responseType = ResponseType.json;
@@ -36,11 +39,15 @@ class HttpHelper {
       String route, {
         List<int> successStatusCodes = const [200, 201],
         onError,
+        bool overrideBaseUrl = false
       }) async {
-    final instance = await _getInstance();
-
+    AppLogger.log("base url is $baseURL");
+    final instance = overrideBaseUrl
+        ? await _getInstance(overridingRoute: route)
+        : await _getInstance();
     Response response;
 
+    AppLogger.log("Sending GET to $route");
     try {
       response = await instance.get(route);
     } on SocketException {
@@ -56,6 +63,8 @@ class HttpHelper {
     dynamic _dataResponse = responseDecoder(response.data);
 
     if (successStatusCodes.contains(response.statusCode) && _dataResponse != null) {
+      AppLogger.log("data response ---  ${_dataResponse.toString()}");
+
       return ServiceState.success(_dataResponse);
     }
 

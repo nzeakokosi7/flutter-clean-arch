@@ -11,9 +11,22 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
   );
 
-  static const TextStyle mediumTitleTextStyle = TextStyle(
+  static const TextStyle itemTitleTextStyle = TextStyle(
     color: AppColors.titleColor,
     fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+
+
+  static const TextStyle groupTitleTextStyle = TextStyle(
+    color: AppColors.titleColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const TextStyle avatarDenseTitleTextStyle = TextStyle(
+    color: AppColors.titleColor,
+    fontSize: 16,
     fontWeight: FontWeight.w400,
   );
 

@@ -40,6 +40,7 @@ dependencies:
   shimmer: ^2.0.0
   flutter_dotenv: ^5.0.2
   equatable: ^2.0.3
+  logger: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -25,7 +25,7 @@ class UserListItem extends StatelessWidget {
         ),
         title: Text(
           userEntity.name!,
-          style: AppTextStyles.mediumTitleTextStyle,
+          style: AppTextStyles.itemTitleTextStyle,
         ),
         subtitle: Text(
           userEntity.email!,

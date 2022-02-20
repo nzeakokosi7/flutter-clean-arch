@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:wayve_test_app/core/utils/app_logger.dart';
 
 import 'core/api/config.dart';
 import 'core/enums/environment.dart';
@@ -29,6 +30,6 @@ Future<void> mainCommon(Environment environment) async {
       isDebug: environment == Environment.dev,
     ));
   }, (exception, stackTrace) async {
-
+    AppLogger.log(stackTrace.toString(), longMessage: true);
   });
 }

@@ -13,7 +13,7 @@ class SplashScreen extends StatelessWidget {
       model: SplashScreenViewModel(),
       builder: (context, model, _) => const Scaffold(
         body: Center(
-          child: Text('Splash Screen'),
+          child: Text('Splash Screen', style: TextStyle(color: Colors.red, fontSize: 30),),
         ),
       ),
     );

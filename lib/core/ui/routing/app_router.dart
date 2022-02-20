@@ -7,14 +7,14 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return AppPageRoute.routeTo(builder: (_) => SplashScreen());
+        return AppPageRoute.routeTo(builder: (_) => const SplashScreen());
       case '/home':
-        return AppPageRoute.routeTo(builder: (_)=> UserListScreen());
+        return AppPageRoute.routeTo(builder: (_)=> const UserListScreen());
       default:
         return AppPageRoute.routeTo(
           builder: (_) => const Scaffold(
             body: Center(
-              child: Text('Something went wrong'),
+              child: Text('Something went wrong', style: TextStyle(color: Colors.red, fontSize: 20),),
             ),
           ),
         );

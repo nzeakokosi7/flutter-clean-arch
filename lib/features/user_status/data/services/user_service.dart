@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:wayve_test_app/core/api/config.dart';
 import 'package:wayve_test_app/core/api/http_client.dart';
 import 'package:wayve_test_app/core/endpoints/endpoints.dart';
 import 'package:wayve_test_app/core/exceptions/api_request_exception.dart';
@@ -21,9 +22,9 @@ class UserServiceImpl extends UserService {
   }) async {
 
     try {
-      var uri = url ?? Endpoints.baseUrl;
+      var uri = url ?? Config().baseUrl;
 
-      final jsonData = await httpHelper.get(uri, overrideBaseUrl: url!=null);
+      final jsonData = await httpHelper.get(uri!, overrideBaseUrl: url!=null);
       AppLogger.log("feedback at user service -- $jsonData", longMessage: true);
 
       return jsonData;

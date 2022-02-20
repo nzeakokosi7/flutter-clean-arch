@@ -2,7 +2,7 @@ import 'package:wayve_test_app/core/enums/environment.dart';
 import 'package:wayve_test_app/core/utils/config_reader.dart';
 
 class Config {
-  Environment? envStatus;
+  static Environment? envStatus;
   String? baseUrl;
 
   Config() {

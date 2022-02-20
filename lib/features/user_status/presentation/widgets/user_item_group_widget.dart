@@ -5,13 +5,13 @@ import 'package:wayve_test_app/features/user_status/domain/entities/user_entity.
 import 'package:wayve_test_app/features/user_status/presentation/widgets/user_item_widget.dart';
 
 class UserItemGroup extends StatelessWidget {
-  final List<UserEntity> userEntity;
-  const UserItemGroup({Key? key, required this.userEntity}) : super(key: key);
+  final List<UserEntity> userEntities;
+  const UserItemGroup({Key? key, required this.userEntities}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     String getTitle() {
-      return userEntity[0].status == UserStatus.active ? "Active" : "Inactive";
+      return userEntities[0].status == UserStatus.active ? "Active" : "Inactive";
     }
     return Column(
       children: [
@@ -20,7 +20,7 @@ class UserItemGroup extends StatelessWidget {
           style: AppTextStyles.itemTitleTextStyle,
         ),
         const SizedBox(height: 5),
-        ...userEntity.map((item) => UserListItem(userEntity: item)).toList()
+        ...userEntities.map((item) => UserListItem(userEntity: item)).toList()
       ],
     );
   }

@@ -38,6 +38,7 @@ dependencies:
   dio: ^4.0.4
   get_it: ^4.0.4
   shimmer: ^2.0.0
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:

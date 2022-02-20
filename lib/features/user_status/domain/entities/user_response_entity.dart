@@ -3,15 +3,15 @@ import 'package:wayve_test_app/features/user_status/domain/entities/user_entity.
 
 class UserResponseEntity extends Equatable {
   final MetaEntity metaData;
-  final UserEntity userEntity;
+  final List<UserEntity> userEntities;
 
   const UserResponseEntity({
      required this.metaData,
-     required this.userEntity,
+     required this.userEntities,
   });
 
   @override
-  List<Object> get props => [metaData, userEntity];
+  List<Object> get props => [metaData, userEntities];
 }
 
 class MetaEntity extends Equatable {
@@ -30,14 +30,31 @@ class PaginationEntity extends Equatable {
   final int pages;
   final int page;
   final int limit;
+  final LinkEntity links;
 
   const PaginationEntity({
     required this.total,
     required this.pages,
     required this.page,
-    required this.limit
+    required this.limit,
+    required this.links
   });
 
   @override
-  List<Object> get props => [total, pages, page, limit];
+  List<Object> get props => [total, pages, page, limit, links];
+}
+
+class LinkEntity extends Equatable {
+  final String previous;
+  final String current;
+  final String next;
+
+  const LinkEntity({
+    required this.previous,
+    required this.current,
+    required this.next,
+  });
+
+  @override
+  List<Object> get props => [previous, current, next];
 }

@@ -5,8 +5,7 @@ import 'package:wayve_test_app/core/exceptions/api_request_exception.dart';
 
 abstract class UserService {
   Future<dynamic> getUsers({
-    required BuildContext context,
-    String? route
+    String? url
   });
 }
 
@@ -17,13 +16,11 @@ class UserServiceImpl extends UserService {
 
   @override
   Future<dynamic> getUsers({
-    required BuildContext context,
-    String? route
+    String? url
   }) async {
 
     try {
-      String path = route ?? "";
-      var uri = Endpoints.baseUrl + path;
+      var uri = url ?? Endpoints.baseUrl;
 
       final jsonData = await httpHelper.get(uri);
 

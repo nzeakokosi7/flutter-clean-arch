@@ -4,46 +4,65 @@ import 'package:wayve_test_app/features/user_status/domain/entities/user_respons
 class UserResponseModel extends UserResponseEntity {
 
   const UserResponseModel({
-    required _Meta metaData,
-    required UserModel userModel,
-  }): super(metaData: metaData, userEntity: userModel);
+    required Meta metaData,
+    required List<UserModel> users,
+  }): super(metaData: metaData, userEntities: users);
 
   factory UserResponseModel.fromJson(Map<String, dynamic> json) {
     return UserResponseModel(
         metaData: json['meta'],
-        userModel: json["data"]
+        users: json["data"]
     );
   }
 }
 
-class _Meta extends MetaEntity{
+class Meta extends MetaEntity{
 
-  const _Meta({
-    required _Pagination pagination
+  const Meta({
+    required Pagination pagination
   }) : super(pagination: pagination);
 
-  factory _Meta.fromJson(Map<String, dynamic> json) {
-    return _Meta(
+  factory Meta.fromJson(Map<String, dynamic> json) {
+    return Meta(
         pagination: json['pagination'],
     );
   }
 }
 
-class _Pagination extends PaginationEntity {
+class Pagination extends PaginationEntity {
 
-  const _Pagination({
+  const Pagination({
     required int total,
     required int pages,
     required int page,
-    required int limit
-  }) : super(total: total, pages: pages, page: page, limit: limit);
+    required int limit,
+    required Link links
+  }) : super(total: total, pages: pages, page: page, limit: limit, links: links);
 
-  factory _Pagination.fromJson(Map<String, dynamic> json) {
-    return _Pagination(
-        total: json['total'],
-        pages: json['pages'],
-        page: json['page'],
-        limit: json['limit'],
+  factory Pagination.fromJson(Map<String, dynamic> json) {
+    return Pagination(
+        total: json['total'] ?? 0,
+        pages: json['pages'] ?? 0,
+        page: json['page'] ?? 0,
+        limit: json['limit'] ?? 0,
+        links: json["links"]
+    );
+  }
+}
+
+class Link extends LinkEntity {
+
+  const Link({
+    required String previous,
+    required String current,
+    required String next,
+  }) : super(previous: previous, current: current, next: next);
+
+  factory Link.fromJson(Map<String, dynamic> json) {
+    return Link(
+      previous: json['previous'],
+      current: json['current'],
+      next: json['next'],
     );
   }
 }

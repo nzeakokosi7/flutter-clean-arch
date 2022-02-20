@@ -5,15 +5,18 @@ import 'package:wayve_test_app/core/ui/styles/text_styles.dart';
 class UserAvatar extends StatelessWidget {
   final String title;
   final UserGender gender;
+  final int id;
 
   const UserAvatar({
     Key? key,
+    required this.id,
     required this.title,
     required this.gender
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     String getAvatarText() {
       if (title.isEmpty) return title;
       var names = title.split(" ");
@@ -24,6 +27,12 @@ class UserAvatar extends StatelessWidget {
       }
     }
 
+    Color getAvatarBackgroundColor() {
+      String text = getAvatarText();
+      int colorInt = int.parse("$text$id");
+      return Color(colorInt);
+    }
+
     return Stack(
       children: [
         Container(
@@ -31,9 +40,9 @@ class UserAvatar extends StatelessWidget {
           width: 40,
           padding: const EdgeInsets.all(10),
           alignment: Alignment.center,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Color(0xFF76C6F5),
+            color: getAvatarBackgroundColor(),
           ),
           child: Text(
             getAvatarText(),

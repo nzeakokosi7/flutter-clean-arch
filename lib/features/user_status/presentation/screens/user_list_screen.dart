@@ -30,6 +30,7 @@ class UserListScreen extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
           child: SingleChildScrollView(
+            controller: model.scrollController,
             child: Column(
               children: [
                 model.isLoading
@@ -42,12 +43,19 @@ class UserListScreen extends StatelessWidget {
                       )
                     : Column(
                         children: [
-                          if (model.activeUserList.isNotEmpty)
-                            UserItemGroup(userEntities: model.activeUserList),
-                          if (model.inactiveUserList.isNotEmpty)
-                            UserItemGroup(userEntities: model.inactiveUserList)
+                          for(int k in model.userActivityPageMap.keys)
+                            UserItemGroup(userEntities: model.userActivityPageMap[k]!)
                         ],
                       ),
+                if(model.isFetchingNextPage)
+                   Center(
+                    child: Container(
+                      height: 30,
+                        width: 30,
+                        margin: const EdgeInsets.only(bottom: 100, top: 20),
+                        child:  const CircularProgressIndicator(color: AppColors.appGrey)
+                    ),
+                  )
               ],
             ),
           ),

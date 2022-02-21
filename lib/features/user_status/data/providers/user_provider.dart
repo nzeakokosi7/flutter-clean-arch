@@ -13,34 +13,34 @@ class UserProvider extends ChangeNotifier {
 
   late PaginationEntity _pagination;
 
-  Future<List<UserEntity>> getUserList({
+  Future<UserResponseModel> getUserList({
     bool isNext = false,
     bool isPrev = false
   }) async {
-    List<UserEntity> userList = [];
+    late UserResponseModel _userResponseModel;
     if(isNext){
       dynamic res = await _userService.getUsers(url: _pagination.links.next);
       APIHelpers.handleResponse(res, onSuccess: (response) {
         final userResponseModel = UserResponseModel.fromJson(response.value);
         _pagination = userResponseModel.metaData.pagination;
-        userList = userResponseModel.userEntities;
+        _userResponseModel = userResponseModel;
       });
     } else if(isPrev){
       dynamic res = await _userService.getUsers(url: _pagination.links.previous);
       APIHelpers.handleResponse(res, onSuccess: (response) {
         final userResponseModel = UserResponseModel.fromJson(response.value);
         _pagination = userResponseModel.metaData.pagination;
-        userList = userResponseModel.userEntities;
+        _userResponseModel = userResponseModel;
       });
     } else {
       dynamic res = await _userService.getUsers();
       APIHelpers.handleResponse(res, onSuccess: (response) {
         final userResponseModel = UserResponseModel.fromJson(response.value);
         _pagination = userResponseModel.metaData.pagination;
-        userList = userResponseModel.userEntities;
+        _userResponseModel = userResponseModel;
       });
     }
-    return userList;
+    return _userResponseModel;
   }
 
 }

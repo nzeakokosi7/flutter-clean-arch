@@ -45,16 +45,16 @@ class PaginationEntity extends Equatable {
 }
 
 class LinkEntity extends Equatable {
-  final String previous;
+  final String? previous;
   final String current;
-  final String next;
+  final String? next;
 
   const LinkEntity({
-    required this.previous,
+    this.previous,
     required this.current,
-    required this.next,
+    this.next,
   });
 
   @override
-  List<Object> get props => [previous, current, next];
+  List<Object> get props => [previous!, current, next!];
 }

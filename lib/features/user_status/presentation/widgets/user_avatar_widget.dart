@@ -10,33 +10,37 @@ class UserAvatar extends StatelessWidget {
   final int id;
   final int scale;
 
-  const UserAvatar({
-    Key? key,
-    required this.id,
-    required this.name,
-    required this.gender,
-    this.scale = 1
-  }) : super(key: key);
+  const UserAvatar(
+      {Key? key,
+      required this.id,
+      required this.name,
+      required this.gender,
+      this.scale = 1})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     String getAvatarText() {
-      if (name.isEmpty) return name;
-      String _name = name;
-      if(name.contains(".")){
-        _name = name.substring(name.indexOf(".")+2);
-        AppLogger.log(_name);
-      }
+      ///remove all group of letters associated with periods
+      RegExp regExp = RegExp(r"\w*\.\w*");
+      String _name = name.replaceAll(regExp, "").trim();
       var names = _name.split(" ");
       if(names.length > 1) {
-       return "${names[0][0]}${names[1][0]}";
+        names.removeWhere((element) => element == "The" || element.isEmpty);
+        AppLogger.log(names);
+        return "${names[0][0]}${names[1][0]}";
+      } else {
+        return names[0][0];
       }
-      return names[0][0];
     }
 
     Color getAvatarBackgroundColor() {
-      String sum =  id.toString().split('').map(int.parse).reduce((t, e) => t + e).toString();
+      String sum = id
+          .toString()
+          .split('')
+          .map(int.parse)
+          .reduce((t, e) => t + e)
+          .toString();
       int colorInt = int.parse("0x99$id$sum");
       return Color(colorInt);
     }
@@ -52,31 +56,35 @@ class UserAvatar extends StatelessWidget {
             shape: BoxShape.circle,
             color: getAvatarBackgroundColor(),
           ),
-          child: Text(
-            getAvatarText(),
-            textAlign: TextAlign.center,
-            style: scale == 1 ? AppTextStyles.titleTextStyle : AppTextStyles.bigTextStyle
-          ),
+          child: Text(getAvatarText(),
+              textAlign: TextAlign.center,
+              style: scale == 1
+                  ? AppTextStyles.titleTextStyle
+                  : AppTextStyles.bigTextStyle),
         ),
-         Positioned(
+        Positioned(
           bottom: 1,
           right: 5,
           child: Container(
-            height: (12*scale).toDouble(),
-            width: (12*scale).toDouble(),
-            // padding: const EdgeInsets.all(5),
-            decoration:  BoxDecoration(
-              border: Border.all(color: AppColors.appGrey, width: 0.4),
-              shape: BoxShape.circle,
-              color: AppColors.appWhite,
-            ),
+              height: (12 * scale).toDouble(),
+              width: (12 * scale).toDouble(),
+              // padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                border: Border.all(color: AppColors.appGrey, width: 0.4),
+                shape: BoxShape.circle,
+                color: AppColors.appWhite,
+              ),
               child: gender == UserGender.male
-                  ?  Center(child: Icon(Icons.male, size: (10 * scale).toDouble(), color: AppColors.appBlack))
-                  :  Center(child: Icon(Icons.female, size: (10 * scale).toDouble(), color: AppColors.appBlack))
-          ),
+                  ? Center(
+                      child: Icon(Icons.male,
+                          size: (10 * scale).toDouble(),
+                          color: AppColors.appBlack))
+                  : Center(
+                      child: Icon(Icons.female,
+                          size: (10 * scale).toDouble(),
+                          color: AppColors.appBlack))),
         )
       ],
     );
   }
-
 }

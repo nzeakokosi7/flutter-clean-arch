@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wayve_test_app/core/ui/routing/app_routes.dart';
 import 'package:wayve_test_app/core/ui/styles/colors.dart';
 import 'package:wayve_test_app/core/ui/routing/app_router.dart';
 import 'package:wayve_test_app/core/ui/styles/text_styles.dart';
@@ -14,7 +15,7 @@ class UserListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: (){
-        Navigator.push(context, AppRouter.generateRoute(const RouteSettings(name: "/user-detail")));
+        Navigator.push(context, AppRouter.generateRoute(RouteSettings(name: AppRoutes.userDetailScreen, arguments: userEntity)));
       },
       contentPadding: EdgeInsets.zero,
       dense: true,

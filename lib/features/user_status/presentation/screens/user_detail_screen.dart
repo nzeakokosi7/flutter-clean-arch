@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:wayve_test_app/core/enums/user_gender.dart';
 import 'package:wayve_test_app/core/ui/styles/colors.dart';
 import 'package:wayve_test_app/core/ui/styles/text_styles.dart';
+import 'package:wayve_test_app/features/user_status/domain/entities/user_entity.dart';
 import 'package:wayve_test_app/features/user_status/presentation/widgets/user_avatar_widget.dart';
 
 class UserDetailScreen extends StatelessWidget {
-  const UserDetailScreen({Key? key}) : super(key: key);
+  final UserEntity userEntity;
+  const UserDetailScreen({Key? key, required this.userEntity}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +28,19 @@ class UserDetailScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Center(
               child: UserAvatar(
                 scale: 2,
-                  id: 1444, name: "Nzeako Kosi", gender: UserGender.male)
+                  id: userEntity.id!, name: userEntity.name!, gender: userEntity.gender!)
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
-            "Nzeako Kosi",
+            userEntity.name!,
             style: AppTextStyles.itemTitleTextStyle,
           ),
           Text(
-            "Kosi@mmm.cppm",
+            userEntity.email!,
             style: AppTextStyles.subTitleTextStyle,
           )
         ],

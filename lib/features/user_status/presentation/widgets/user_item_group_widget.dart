@@ -18,6 +18,7 @@ class UserItemGroup extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 15),
         Text(
           getTitle(),
           style: AppTextStyles.groupTitleTextStyle,

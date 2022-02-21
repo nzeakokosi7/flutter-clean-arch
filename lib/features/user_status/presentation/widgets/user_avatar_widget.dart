@@ -27,7 +27,6 @@ class UserAvatar extends StatelessWidget {
       var names = _name.split(" ");
       if(names.length > 1) {
         names.removeWhere((element) => element == "The" || element.isEmpty);
-        AppLogger.log(names);
         return "${names[0][0]}${names[1][0]}";
       } else {
         return names[0][0];
@@ -35,21 +34,20 @@ class UserAvatar extends StatelessWidget {
     }
 
     Color getAvatarBackgroundColor() {
-      String sum = id
+      int sum = id
           .toString()
           .split('')
           .map(int.parse)
-          .reduce((t, e) => t + e)
-          .toString();
-      int colorInt = int.parse("0x99$id$sum");
-      return Color(colorInt);
+          .reduce((t, e) => t + e);
+      int index = sum % Colors.primaries.length;
+      return Colors.primaries[index];
     }
 
     return Stack(
       children: [
         Container(
-          height: (45 * scale).toDouble(),
-          width: (45 * scale).toDouble(),
+          height: (46 * scale).toDouble(),
+          width: (46 * scale).toDouble(),
           padding: const EdgeInsets.all(10),
           alignment: Alignment.center,
           decoration: BoxDecoration(

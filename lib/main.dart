@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wayve_test_app/core/ui/routing/app_routes.dart';
 
 import 'core/providers/provider_setup.dart';
 import 'core/ui/navigation/navigation.dart';
@@ -30,7 +31,7 @@ class MainApp extends StatelessWidget {
           scaffoldBackgroundColor: AppColors.appBackground,
         ),
         onGenerateRoute: AppRouter.generateRoute,
-        initialRoute: '/',
+        initialRoute: AppRoutes.home,
       ),
     );
   }

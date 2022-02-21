@@ -63,7 +63,7 @@ class HttpHelper {
     dynamic _dataResponse = responseDecoder(response.data);
 
     if (successStatusCodes.contains(response.statusCode) && _dataResponse != null) {
-      AppLogger.log("data response ---  ${_dataResponse.toString()}");
+      AppLogger.log("data response ---  ${_dataResponse.toString()}", longMessage: true);
 
       return ServiceState.success(_dataResponse);
     }

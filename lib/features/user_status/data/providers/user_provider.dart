@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:wayve_test_app/core/api/api_helpers.dart';
+import 'package:wayve_test_app/core/utils/app_logger.dart';
 import 'package:wayve_test_app/features/user_status/data/models/user_response_model.dart';
 import 'package:wayve_test_app/features/user_status/data/services/user_service.dart';
 import 'package:wayve_test_app/features/user_status/domain/entities/user_entity.dart';

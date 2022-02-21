@@ -1,3 +1,4 @@
+import 'package:wayve_test_app/core/utils/app_logger.dart';
 import 'package:wayve_test_app/features/user_status/data/models/user_model.dart';
 import 'package:wayve_test_app/features/user_status/domain/entities/user_response_entity.dart';
 
@@ -10,8 +11,8 @@ class UserResponseModel extends UserResponseEntity {
 
   factory UserResponseModel.fromJson(Map<String, dynamic> json) {
     return UserResponseModel(
-        metaData: json['meta'],
-        users: json["data"]
+        metaData: Meta.fromJson(json['meta']),
+        users: json["data"].map<UserModel>((i)=>UserModel.fromJson(i)).toList()
     );
   }
 }
@@ -24,7 +25,7 @@ class Meta extends MetaEntity{
 
   factory Meta.fromJson(Map<String, dynamic> json) {
     return Meta(
-        pagination: json['pagination'],
+        pagination: Pagination.fromJson(json['pagination']),
     );
   }
 }
@@ -45,7 +46,7 @@ class Pagination extends PaginationEntity {
         pages: json['pages'] ?? 0,
         page: json['page'] ?? 0,
         limit: json['limit'] ?? 0,
-        links: json["links"]
+        links: Link.fromJson(json["links"])
     );
   }
 }
@@ -60,9 +61,9 @@ class Link extends LinkEntity {
 
   factory Link.fromJson(Map<String, dynamic> json) {
     return Link(
-      previous: json['previous'],
-      current: json['current'],
-      next: json['next'],
+      previous: json['previous'].toString(),
+      current: json['current'].toString(),
+      next: json['next'].toString(),
     );
   }
 }

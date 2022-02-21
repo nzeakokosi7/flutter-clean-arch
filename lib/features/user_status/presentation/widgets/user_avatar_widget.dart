@@ -21,16 +21,16 @@ class UserAvatar extends StatelessWidget {
       if (title.isEmpty) return title;
       var names = title.split(" ");
       if(names.length == 1) {
-        return names[0];
+        return names[0][0];
       } else  {
-        return "${names[names.length-2]}${names[names.length-1]}";
+        return "${names[names.length-2][0]}${names[names.length-1][0]}";
       }
     }
 
     Color getAvatarBackgroundColor() {
       String text = getAvatarText();
-      int colorInt = int.parse("$text$id");
-      return Color(colorInt);
+      int colorInt = int.parse("0xFF$id");
+      return Colors.red;
     }
 
     return Stack(

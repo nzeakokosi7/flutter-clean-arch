@@ -12,36 +12,33 @@ class UserListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<UserViewModel>(
       model: UserViewModel(),
-      onModelReady: (model)=>model.init(),
+      onModelReady: (model) => model.init(),
       builder: (context, model, _) => Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              model.isLoading
-                  ?  Center(
-                      child: SizedBox(
-                        height: 1.0.ofHeight,
-                        width: 1.0.ofWidth,
-                        child: const ShimmerLoadingWidget(),
-                      ),
-                    )
-                  : SizedBox(
+        body: Column(
+          children: [
+            model.isLoading
+                ? Center(
+                    child: SizedBox(
                       height: 1.0.ofHeight,
                       width: 1.0.ofWidth,
+                      child: const ShimmerLoadingWidget(),
+                    ),
+                  )
+                : Expanded(
+                    child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          if(model.activeUserList.isNotEmpty)
+                          if (model.activeUserList.isNotEmpty)
                             UserItemGroup(userEntities: model.activeUserList),
-                          if(model.inactiveUserList.isNotEmpty)
+                          if (model.inactiveUserList.isNotEmpty)
                             UserItemGroup(userEntities: model.inactiveUserList)
                         ],
                       ),
-                  )
-            ],
-          ),
+                    ),
+                  ),
+          ],
         ),
       ),
     );
   }
-
 }

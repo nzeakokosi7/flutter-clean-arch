@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wayve_test_app/core/enums/user_gender.dart';
+import 'package:wayve_test_app/core/ui/styles/colors.dart';
 import 'package:wayve_test_app/core/ui/styles/text_styles.dart';
 
 class UserAvatar extends StatelessWidget {
@@ -51,16 +52,20 @@ class UserAvatar extends StatelessWidget {
           ),
         ),
          Positioned(
-          bottom: 0,
-          right: 0,
+          bottom: 1,
+          right: 5,
           child: Container(
-            height: 10,
-            width: 10,
-            padding: const EdgeInsets.all(5),
-            color: Colors.white,
+            height: 12,
+            width: 12,
+            // padding: const EdgeInsets.all(5),
+            decoration:  BoxDecoration(
+              border: Border.all(color: AppColors.appGrey, width: 0.4),
+              shape: BoxShape.circle,
+              color: AppColors.appWhite,
+            ),
               child: gender == UserGender.male
-                  ? const Icon(Icons.male)
-                  : const Icon(Icons.female)
+                  ? const Center(child: Icon(Icons.male, size: 10, color: AppColors.appBlack))
+                  : const Center(child: Icon(Icons.female, size: 10, color: AppColors.appBlack))
           ),
         )
       ],

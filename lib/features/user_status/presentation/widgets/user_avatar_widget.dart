@@ -46,8 +46,8 @@ class UserAvatar extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: (46 * scale).toDouble(),
-          width: (46 * scale).toDouble(),
+          height: (48 * scale).toDouble(),
+          width: (48 * scale).toDouble(),
           padding: const EdgeInsets.all(10),
           alignment: Alignment.center,
           decoration: BoxDecoration(
@@ -66,7 +66,6 @@ class UserAvatar extends StatelessWidget {
           child: Container(
               height: (12 * scale).toDouble(),
               width: (12 * scale).toDouble(),
-              // padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
                 border: Border.all(color: AppColors.appGrey, width: 0.4),
                 shape: BoxShape.circle,

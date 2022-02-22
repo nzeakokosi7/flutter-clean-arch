@@ -35,6 +35,9 @@ class HttpHelper {
     return _client;
   }
 
+  ///For unit tests purposes
+  static Future<Dio> get getTestInstance => _getInstance();
+
   Future<dynamic> get(
       String route, {
         List<int> successStatusCodes = const [200, 201],

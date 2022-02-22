@@ -1,13 +1,8 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:mockito/mockito.dart';
 import 'package:wayve_test_app/core/api/http_client.dart';
-import 'package:wayve_test_app/di.dart';
-import 'package:wayve_test_app/features/user_status/data/services/user_service.dart';
 
 
 void main() async {

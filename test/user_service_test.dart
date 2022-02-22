@@ -24,14 +24,6 @@ void main() async {
   var _httpHelper = MockHttpHelper();
   var _userService = UserServiceImpl(httpHelper: _httpHelper);
 
-  Dio tDio = Dio();
-  final dioAdapterMock = DioAdapter(dio: tDio);
-
-  setUp(() async {
-    tDio = await HttpHelper.getTestInstance;
-    tDio.httpClientAdapter = dioAdapterMock;
-  });
-
   group('Test User Service', () {
     String path = "https://gorest.co.in/public/v1/users";
 

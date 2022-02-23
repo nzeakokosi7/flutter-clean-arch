@@ -8,11 +8,18 @@ import 'package:wayve_test_app/features/user_status/domain/entities/user_respons
 
 import '../../../../di.dart';
 
-class UserProvider extends ChangeNotifier {
+abstract class UserRepository {
+  Future<UserResponseModel> getUserList({
+    bool isNext = false,
+    bool isPrev = false,
+  });
+}
+class UserRepositoryImpl extends UserRepository {
   final _userService = locator<UserService>();
 
   late PaginationEntity _pagination;
 
+  @override
   Future<UserResponseModel> getUserList({
     bool isNext = false,
     bool isPrev = false
@@ -42,5 +49,4 @@ class UserProvider extends ChangeNotifier {
     }
     return _userResponseModel;
   }
-
 }

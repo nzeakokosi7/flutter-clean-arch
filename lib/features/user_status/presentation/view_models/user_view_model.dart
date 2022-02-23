@@ -4,11 +4,14 @@ import 'package:wayve_test_app/core/enums/user_status.dart';
 import 'package:wayve_test_app/core/ui/base/base_view_model.dart';
 import 'package:wayve_test_app/core/utils/app_logger.dart';
 import 'package:wayve_test_app/features/user_status/data/models/user_response_model.dart';
-import 'package:wayve_test_app/features/user_status/data/providers/user_provider.dart';
+import 'package:wayve_test_app/features/user_status/data/repositories/user_repository.dart';
 import 'package:wayve_test_app/features/user_status/domain/entities/user_entity.dart';
 
+import '../../../../di.dart';
+
 class UserViewModel extends BaseViewModel {
-  late UserProvider userProvider;
+  final _userRepository = locator<UserRepository>();
+
   ScrollController scrollController = ScrollController();
   
   int _pager = 0;
@@ -58,7 +61,7 @@ class UserViewModel extends BaseViewModel {
 
   void fetchUsers({bool gotoNextPage = false})async {
     gotoNextPage ? isFetchingNextPage = true :  isLoading = true;
-    UserResponseModel userResponseModel = await userProvider.getUserList(isNext: gotoNextPage);
+    UserResponseModel userResponseModel = await _userRepository.getUserList(isNext: gotoNextPage);
 
     isNextAvailable = userResponseModel.metaData.pagination.links.next !=null;
     if(userResponseModel.userEntities.isNotEmpty) {
@@ -76,7 +79,6 @@ class UserViewModel extends BaseViewModel {
   }
 
   void init() async {
-    userProvider = Provider.of<UserProvider>(appContext, listen: false);
     scrollController.addListener(pagination);
     fetchUsers();
   }

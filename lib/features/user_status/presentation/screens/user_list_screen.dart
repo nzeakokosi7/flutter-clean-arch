@@ -36,8 +36,8 @@ class UserListScreen extends StatelessWidget {
                 model.isLoading
                     ? Center(
                         child: SizedBox(
-                          height: 1.0.ofHeight,
-                          width: 1.0.ofWidth,
+                          height: context.ofHeight(1.0),
+                          width: context.ofWidth(1.0),
                           child: const ShimmerLoadingWidget(),
                         ),
                       )

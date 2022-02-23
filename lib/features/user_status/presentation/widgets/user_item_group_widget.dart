@@ -8,6 +8,7 @@ import 'package:wayve_test_app/features/user_status/presentation/widgets/user_it
 
 class UserItemGroup extends StatelessWidget {
   final List<UserEntity> userEntities;
+
   const UserItemGroup({Key? key, required this.userEntities}) : super(key: key);
 
   @override

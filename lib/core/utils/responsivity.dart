@@ -4,15 +4,7 @@ import 'package:wayve_test_app/core/ui/navigation/navigation.dart';
 
 import '../../di.dart';
 
-extension HeightExtension on double {
-  double get ofHeight => MediaQuery.of(context).size.height * this;
-
-  double get ofWidth => MediaQuery.of(context).size.width * this;
-}
-
-BuildContext get context {
-  var nav = locator<NavigationService>();
-  BuildContext? ctx = nav.navigatorKey.currentContext;
-  if (ctx == null) throw "couldn't find context";
-  return ctx;
+extension Responsivity on BuildContext {
+  double ofHeight(double height) => MediaQuery.of(this).size.height * height;
+  double ofWidth(double width) => MediaQuery.of(this).size.height * width;
 }

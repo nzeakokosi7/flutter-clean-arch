@@ -35,7 +35,7 @@ class MainApp extends StatelessWidget {
         ),
         home: Router(
           routerDelegate: appDelegate,
-          backButtonDispatcher: RootBackButtonDispatcher(),
+          backButtonDispatcher: appBackButtonDispatcher,
         ),
       ),
     );

@@ -69,7 +69,7 @@ class AppRouterDelegate extends RouterDelegate<List<RouteSettings>>
   MaterialPage _createPage(Widget child, RouteSettings routeSettings) {
     return MaterialPage(
         child: child,
-        key: Key(routeSettings.name!) as LocalKey,
+        key: ValueKey(routeSettings.name),
         name: routeSettings.name,
         arguments: routeSettings.arguments);
   }
@@ -87,7 +87,7 @@ class AppRouterDelegate extends RouterDelegate<List<RouteSettings>>
   void _addPage(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case AppRoutes.home:
-        _addPageData( SplashScreen(), routeSettings);
+        _addPageData(const SplashScreen(), routeSettings);
         break;
       case AppRoutes.userListScreen:
         _addPageData(const UserListScreen(), routeSettings);

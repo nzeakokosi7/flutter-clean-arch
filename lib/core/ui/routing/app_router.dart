@@ -10,7 +10,7 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutes.home:
-        return AppPageRoute.routeTo(builder: (_) => const SplashScreen());
+        return AppPageRoute.routeTo(builder: (_) => SplashScreen());
       case AppRoutes.userListScreen:
         return AppPageRoute.routeTo(builder: (_)=> const UserListScreen());
       case AppRoutes.userDetailScreen:

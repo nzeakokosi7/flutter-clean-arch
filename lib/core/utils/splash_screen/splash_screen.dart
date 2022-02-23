@@ -4,7 +4,6 @@ import 'package:wayve_test_app/core/ui/base/base_view.dart';
 import 'package:wayve_test_app/core/utils/splash_screen/view_model.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

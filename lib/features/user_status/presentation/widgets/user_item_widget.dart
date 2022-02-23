@@ -6,6 +6,9 @@ import 'package:wayve_test_app/core/ui/styles/text_styles.dart';
 import 'package:wayve_test_app/features/user_status/domain/entities/user_entity.dart';
 import 'package:wayve_test_app/features/user_status/presentation/widgets/user_avatar_widget.dart';
 
+import '../../../../core/ui/_navigation/router_delegate.dart';
+import '../../../../di.dart';
+
 class UserListItem extends StatelessWidget {
   final UserEntity userEntity;
 
@@ -13,9 +16,10 @@ class UserListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var appDelegate = locator<AppRouterDelegate>();
     return ListTile(
       onTap: (){
-        Navigator.push(context, AppRouter.generateRoute(RouteSettings(name: AppRoutes.userDetailScreen, arguments: userEntity)));
+        // appDelegate.goTo(name: AppRoutes.userDetailScreen, arguments: userEntity);
       },
       contentPadding: EdgeInsets.zero,
       dense: true,

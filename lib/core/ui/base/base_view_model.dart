@@ -1,10 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:wayve_test_app/core/ui/navigation/navigation.dart';
-
-import '../../../di.dart';
 
 class BaseViewModel extends ChangeNotifier {
-  final navigationService = locator<NavigationService>();
 
 
   bool _isLoading = false;

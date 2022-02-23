@@ -12,21 +12,20 @@ class BaseView<T extends ChangeNotifier> extends StatefulWidget {
   final Function(T)? onDispose;
   final bool closeKeyboardOnTap;
 
-  const BaseView({
-    Key? key,
+   BaseView({
     required this.builder,
     required this.model,
     this.child,
     this.onModelReady,
     this.onDispose,
     this.closeKeyboardOnTap = true,
-  }) : super(key: key);
+  });
+
   @override
   _BaseViewState<T> createState() => _BaseViewState<T>();
 }
 
 class _BaseViewState<T extends ChangeNotifier> extends State<BaseView<T>> {
-  final navigationService = locator<NavigationService>();
   late T model;
 
   @override

@@ -230,10 +230,13 @@ features/
 ### Tests
 All tests of the application would go under this directory for now we just have two unit tests and one widget test.
 
+```
 |- test/
-|- http_client_test.dart
-|- user_service_test.dart
-|- widget_test.dart
+    |- http_client_test.dart
+    |- user_service_test.dart
+    |- widget_test.dart
+```    
+
 
 ## Conclusion
 

@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:wayve_test_app/core/enums/user_status.dart';
@@ -7,6 +8,7 @@ import 'package:wayve_test_app/features/user_status/data/models/user_response_mo
 import 'package:wayve_test_app/features/user_status/data/repositories/user_repository.dart';
 import 'package:wayve_test_app/features/user_status/domain/entities/user_entity.dart';
 
+import '../../../../core/api/network_info.dart';
 import '../../../../di.dart';
 
 class UserViewModel extends BaseViewModel {
@@ -78,8 +80,26 @@ class UserViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  void checkNetworkStats() async {
+    isNetworkAvailable = await NetworkUtil.isUserConnected();
+  }
+
+  void initiateNetworkListener() {
+    networkListener = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) async {
+      // Got a new connectivity status!
+      checkNetworkStats();
+      if (isNetworkAvailable) {
+        AppLogger.log("*****************User is back online *****************");
+      } else {
+        AppLogger.log("*****************User is offline *****************");
+      }
+    });
+  }
+
   void init() async {
     scrollController.addListener(pagination);
+    initiateNetworkListener();
+    checkNetworkStats();
     fetchUsers();
   }
 }

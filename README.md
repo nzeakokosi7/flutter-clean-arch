@@ -82,7 +82,7 @@ Make sure to add this file to your `.gitignore` file.
 * [Logging](https://pub.dev/packages/logger)
 * [Get it](https://pub.dev/packages/get_it)
 * [Mockito](https://pub.dev/packages/mockito)
-  *[Build runner]( https://pub.dev/packages/build_runner)
+* [Build runner]( https://pub.dev/packages/build_runner)
 
 ### Folder Structure
 Here is the core folder structure which flutter provides.
@@ -159,10 +159,7 @@ core/
         
     |- navigation/
         |- navigation.dart
-        
-    |- navigation/
-        |- navigation.dart 
-        
+    
     |- styles/
         |- colors.dart  
         |- text_styles.dart 

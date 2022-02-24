@@ -5,7 +5,7 @@ import 'package:wayve_test_app/core/ui/styles/text_styles.dart';
 import 'package:wayve_test_app/core/utils/loaders/shimmer_loader.dart';
 import 'package:wayve_test_app/features/user_status/presentation/view_models/user_view_model.dart';
 import 'package:wayve_test_app/features/user_status/presentation/widgets/user_item_group_widget.dart';
-import 'package:wayve_test_app/core/utils/responsivity.dart';
+import 'package:wayve_test_app/core/utils/extensions.dart';
 
 class UserListScreen extends StatelessWidget {
   const UserListScreen({Key? key}) : super(key: key);
@@ -19,8 +19,7 @@ class UserListScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: AppColors.appWhite,
           elevation: 0.5,
-          titleSpacing: 0,
-          leadingWidth: 12,
+          titleSpacing: 12,
           centerTitle: false,
           title: const Text(
             "User List",
@@ -28,7 +27,7 @@ class UserListScreen extends StatelessWidget {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: SingleChildScrollView(
             controller: model.scrollController,
             child: Column(

@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wayve_test_app/core/ui/_navigation/back_dispatcher.dart';
-import 'package:wayve_test_app/core/ui/_navigation/router_delegate.dart';
-import 'package:wayve_test_app/core/ui/routing/app_routes.dart';
-import 'package:wayve_test_app/core/utils/splash_screen/splash_screen.dart';
+import 'package:wayve_test_app/core/ui/navigation/navigation.dart';
 
 import 'core/providers/provider_setup.dart';
-import 'core/ui/navigation/navigation.dart';
-import 'core/ui/routing/app_router.dart';
+
 import 'core/ui/styles/colors.dart';
-import 'di.dart';
 
 class MainApp extends StatelessWidget {
   final bool isDebug;
@@ -21,21 +16,17 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appDelegate = locator<AppRouterDelegate>();
-    AppBackButtonDispatcher appBackButtonDispatcher = AppBackButtonDispatcher(appDelegate);
 
     return MultiProvider(
       providers: providers,
-      child: MaterialApp(
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: isDebug,
         title: 'WayveTestApp',
+        routerDelegate: AppRouter.router.routerDelegate,
+        routeInformationParser: AppRouter.router.routeInformationParser,
         theme: ThemeData(
           fontFamily: 'Inter',
           scaffoldBackgroundColor: AppColors.appBackground,
-        ),
-        home: Router(
-          routerDelegate: appDelegate,
-          backButtonDispatcher: appBackButtonDispatcher,
         ),
       ),
     );

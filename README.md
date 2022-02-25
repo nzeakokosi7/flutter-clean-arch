@@ -242,7 +242,7 @@ This directory contains all github workflows that run on any push to the master 
 
 ```
 |- .github/
-    |- workflows
+    |- workflows/
         |- flutter-ci.yml
 ```      
 

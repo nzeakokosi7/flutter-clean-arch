@@ -17,8 +17,8 @@ jobs:
 
       - name: Create and populate .env file
         env:
-          API_BASE_URL_DEV: ${{ secrets.DEV_URL }}
-          API_BASE_URL_PROD: ${{ secrets.PROD_URL }}
+          API_BASE_URL_DEV: ${{ secrets.API_BASE_URL_DEV }}
+          API_BASE_URL_PROD: ${{ secrets.API_BASE_URL_PROD }}
         run: |
           touch .env
           echo API_BASE_URL_DEV="$API_BASE_URL_DEV" >> .env

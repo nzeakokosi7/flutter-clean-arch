@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.wayve_test_app">
-   <application
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
         android:label="wayve_test_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

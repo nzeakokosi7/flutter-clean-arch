@@ -4,6 +4,7 @@ import 'package:wayve_test_app/core/ui/styles/colors.dart';
 import 'package:wayve_test_app/core/ui/styles/text_styles.dart';
 import 'package:wayve_test_app/core/utils/loaders/shimmer_loader.dart';
 import 'package:wayve_test_app/features/user_status/presentation/view_models/user_view_model.dart';
+import 'package:wayve_test_app/features/user_status/presentation/widgets/network_error_screen.dart';
 import 'package:wayve_test_app/features/user_status/presentation/widgets/user_item_group_widget.dart';
 import 'package:wayve_test_app/core/utils/extensions.dart';
 
@@ -33,13 +34,7 @@ class UserListScreen extends StatelessWidget {
             child: Column(
               children: [
                 if (!model.isNetworkAvailable)
-                  const Center(
-                    child: Text(
-                      "You're currently offline, kindly check your network connectivity",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.red, fontSize: 15),
-                    ),
-                  )
+                  NetworkErrorScreen(refreshAction: ()=>model.checkNetworkStats())
                 else
                   Column(
                     children: [

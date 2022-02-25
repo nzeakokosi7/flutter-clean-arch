@@ -87,6 +87,9 @@ class UserViewModel extends BaseViewModel {
 
   Future<void> checkNetworkStats() async {
     isNetworkAvailable = await NetworkUtil.isUserConnected();
+    if(isNextAvailable){
+      fetchUsers();
+    }
   }
 
   void initiateNetworkListener() {

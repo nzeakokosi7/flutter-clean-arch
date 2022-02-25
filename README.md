@@ -4,7 +4,8 @@ This flutter app was built using Nav2 and Provider and orchestrated following th
 
 ## Summary
 
-The app is a simple flutter app with two screens, on
+The app is a simple flutter app with two main screens, first screen shows a list of users grouped by their activity status, clicking on a user takes you to the next screen with the user's details.
+You can find a test build [here](https://github.com/nzeakokosi7/wayve_flutter_test/actions/runs/1897934317). **Android only**
 
 ## How to Use
 
@@ -29,13 +30,7 @@ flutter pub get
 This project uses `Mockito` library to mock classes for unit tests, that works with code generation, execute the following command to generate files:
 
 ```
-flutter packages pub run build_runner build --delete-conflicting-outputs
-```
-
-or watch command in order to keep the source code synced automatically:
-
-```
-flutter packages pub run build_runner watch
+dart run build_runner build
 ```
 
 ## Hide Generated Files
@@ -242,6 +237,14 @@ All tests of the application would go under this directory for now we just have 
     |- widget_test.dart
 ```    
 
+### Github CI/CD
+This directory contains all github workflows that run on any push to the master branch. it has only one workflow file which performs, code formatting, analysis and runs tests before building a debug android app which gets uploaded to github artifacts.
+
+```
+|- .github/
+    |- workflows
+        |- flutter-ci.yml
+```      
 
 ## Conclusion
 

@@ -5,7 +5,7 @@ This flutter app was built using Nav2 and Provider and orchestrated following th
 ## Summary
 
 The app is a simple flutter app with two main screens, first screen shows a list of users grouped by their activity status, clicking on a user takes you to the next screen with the user's details.
-You can find a test build [here](https://github.com/nzeakokosi7/wayve_flutter_test/actions/runs/1897934317). **Android only**
+You can find a test build [here](https://github.com/nzeakokosi7/wayve_flutter_test/actions/runs/1898462560). **Android only**
 
 ## How to Use
 

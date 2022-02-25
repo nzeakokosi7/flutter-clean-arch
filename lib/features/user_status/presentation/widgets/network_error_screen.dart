@@ -24,7 +24,7 @@ class NetworkErrorScreen extends StatelessWidget {
             style: TextStyle(color: Colors.red, fontSize: 15),
           ),
           TextButton(
-              onPressed: ()=>refreshAction(),
+              onPressed: ()=>refreshAction,
               child: const Text(
                   "Refresh",
                 style: TextStyle(color: Colors.blue, fontSize: 13),

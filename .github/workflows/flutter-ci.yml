@@ -16,23 +16,23 @@ jobs:
     steps:
 
       - name: Create and populate .env file
-          env:
-            API_BASE_URL_DEV: ${{ secrets.DEV_URL }}
-            API_BASE_URL_PROD: ${{ secrets.PROD_URL }}
-          run: |
-            touch .env
-            echo API_BASE_URL_DEV="$API_BASE_URL_DEV" >> .env
-            echo API_BASE_URL_PROD="$API_BASE_URL_PROD" >> .env
-            
-            echo "cat .env"
-            cat .env
-            
-            echo "ls -a ."
-            ls -a .
-            
-            echo "ls -a ${{ github.workspace }}"
-            ls -a ${{ github.workspace }}
-          shell: bash
+        env:
+          API_BASE_URL_DEV: ${{ secrets.DEV_URL }}
+          API_BASE_URL_PROD: ${{ secrets.PROD_URL }}
+        run: |
+          touch .env
+          echo API_BASE_URL_DEV="$API_BASE_URL_DEV" >> .env
+          echo API_BASE_URL_PROD="$API_BASE_URL_PROD" >> .env
+          
+          echo "cat .env"
+          cat .env
+          
+          echo "ls -a ."
+          ls -a .
+          
+          echo "ls -a ${{ github.workspace }}"
+          ls -a ${{ github.workspace }}
+        shell: bash
 
       # Setup Java environment in order to build the Android app.
       - uses: actions/checkout@v1

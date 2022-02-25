@@ -62,29 +62,27 @@ class UserViewModel extends BaseViewModel {
   }
 
   void fetchUsers({bool gotoNextPage = false}) async {
-    if(isNextAvailable) {
-      gotoNextPage ? isFetchingNextPage = true : isLoading = true;
-      UserResponseModel userResponseModel =
-      await _userRepository.getUserList(isNext: gotoNextPage);
+    gotoNextPage ? isFetchingNextPage = true : isLoading = true;
+    UserResponseModel userResponseModel =
+        await _userRepository.getUserList(isNext: gotoNextPage);
 
-      isNextAvailable = userResponseModel.metaData.pagination.links.next != null;
-      if (userResponseModel.userEntities.isNotEmpty) {
-        activeUserList = userResponseModel.userEntities
-            .where((i) => i.status == UserStatus.active)
-            .toList();
-        _userActivityPageMap.putIfAbsent(pager, () => activeUserList);
-        pager++;
+    isNextAvailable = userResponseModel.metaData.pagination.links.next != null;
+    if (userResponseModel.userEntities.isNotEmpty) {
+      activeUserList = userResponseModel.userEntities
+          .where((i) => i.status == UserStatus.active)
+          .toList();
+      _userActivityPageMap.putIfAbsent(pager, () => activeUserList);
+      pager++;
 
-        inactiveUserList = userResponseModel.userEntities
-            .where((i) => i.status == UserStatus.inactive)
-            .toList();
-        _userActivityPageMap.putIfAbsent(pager, () => inactiveUserList);
-        pager++;
-        notifyListeners();
-      }
-      gotoNextPage ? isFetchingNextPage = false : isLoading = false;
+      inactiveUserList = userResponseModel.userEntities
+          .where((i) => i.status == UserStatus.inactive)
+          .toList();
+      _userActivityPageMap.putIfAbsent(pager, () => inactiveUserList);
+      pager++;
       notifyListeners();
     }
+    gotoNextPage ? isFetchingNextPage = false : isLoading = false;
+    notifyListeners();
   }
 
   Future<void> checkNetworkStats() async {

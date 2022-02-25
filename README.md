@@ -52,6 +52,8 @@ In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `F
 *.mocks.dart
 ```
 
+Make sure to add it to to your `.gitignore` file as well.
+
 **Step 4:**
 
 Create an environment file named `.env` at the approot folder, copy and paste these items below
@@ -74,6 +76,7 @@ Make sure to add this file to your `.gitignore` file.
 * Code Generation (Build runner, Mockito)
 * Logging
 * Dependency Injection (Get It)
+* Network Info (Connectivity Plus)
 
 ### Libraries & Tools Used
 
@@ -83,6 +86,7 @@ Make sure to add this file to your `.gitignore` file.
 * [Get it](https://pub.dev/packages/get_it)
 * [Mockito](https://pub.dev/packages/mockito)
 * [Build runner]( https://pub.dev/packages/build_runner)
+* [Connectivity Plus](https://pub.dev/packages/connectivity_plus)
 
 ### Folder Structure
 Here is the core folder structure which flutter provides.
@@ -174,6 +178,7 @@ core/
     |- app_logger.dart 
     |- config-reader.dart
     |- constants.dart 
+    |- data_connection_checker.dart
     |- error_helper_messages.dart
     |- extensions.dart 
 ```

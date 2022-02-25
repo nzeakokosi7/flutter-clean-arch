@@ -80,18 +80,18 @@ class UserViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void checkNetworkStats() async {
+  Future<void> checkNetworkStats() async {
     isNetworkAvailable = await NetworkUtil.isUserConnected();
   }
 
   void initiateNetworkListener() {
     networkListener = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) async {
       // Got a new connectivity status!
-      checkNetworkStats();
+      await checkNetworkStats();
       if (isNetworkAvailable) {
-        AppLogger.log("*****************User is back online *****************");
+        AppLogger.log("***************** User is online *****************");
       } else {
-        AppLogger.log("*****************User is offline *****************");
+        AppLogger.log("***************** User is offline *****************");
       }
     });
   }
@@ -99,7 +99,6 @@ class UserViewModel extends BaseViewModel {
   void init() async {
     scrollController.addListener(pagination);
     initiateNetworkListener();
-    checkNetworkStats();
     fetchUsers();
   }
 }

@@ -3,8 +3,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
 
 class BaseViewModel extends ChangeNotifier {
-
-
   bool _isNetworkAvailable = true;
   bool _isLoading = false;
   bool disposed = false;

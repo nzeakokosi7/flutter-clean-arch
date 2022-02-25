@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:wayve_test_app/core/ui/navigation/navigation.dart';
-
-import '../../../di.dart';
 
 class BaseView<T extends ChangeNotifier> extends StatefulWidget {
   final Widget Function(BuildContext context, T model, Widget? child) builder;
@@ -12,14 +9,15 @@ class BaseView<T extends ChangeNotifier> extends StatefulWidget {
   final Function(T)? onDispose;
   final bool closeKeyboardOnTap;
 
-   BaseView({
+  const BaseView({
+    Key? key,
     required this.builder,
     required this.model,
     this.child,
     this.onModelReady,
     this.onDispose,
     this.closeKeyboardOnTap = true,
-  });
+  }) : super(key: key);
 
   @override
   _BaseViewState<T> createState() => _BaseViewState<T>();

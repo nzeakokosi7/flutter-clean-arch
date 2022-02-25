@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:wayve_test_app/core/enums/user_gender.dart';
 import 'package:wayve_test_app/core/ui/styles/colors.dart';
 import 'package:wayve_test_app/core/ui/styles/text_styles.dart';
-import 'package:wayve_test_app/core/utils/app_logger.dart';
 
 class UserAvatar extends StatelessWidget {
   final String name;
@@ -25,7 +24,7 @@ class UserAvatar extends StatelessWidget {
       RegExp regExp = RegExp(r"\w*\.\w*");
       String _name = name.replaceAll(regExp, "").trim();
       var names = _name.split(" ");
-      if(names.length > 1) {
+      if (names.length > 1) {
         names.removeWhere((element) => element == "The" || element.isEmpty);
         return "${names[0][0]}${names[1][0]}";
       } else {
@@ -34,11 +33,7 @@ class UserAvatar extends StatelessWidget {
     }
 
     Color getAvatarBackgroundColor() {
-      int sum = id
-          .toString()
-          .split('')
-          .map(int.parse)
-          .reduce((t, e) => t + e);
+      int sum = id.toString().split('').map(int.parse).reduce((t, e) => t + e);
       int index = sum % Colors.primaries.length;
       return Colors.primaries[index];
     }

@@ -32,7 +32,7 @@ class UserListScreen extends StatelessWidget {
             controller: model.scrollController,
             child: Column(
               children: [
-                if(!model.isNetworkAvailable)
+                if (!model.isNetworkAvailable)
                   const Center(
                     child: Text(
                       "You're currently offline, kindly check your network connectivity",
@@ -45,26 +45,29 @@ class UserListScreen extends StatelessWidget {
                     children: [
                       model.isLoading
                           ? Center(
-                        child: SizedBox(
-                          height: context.ofHeight(1.0),
-                          width: context.ofWidth(1.0),
-                          child: const ShimmerLoadingWidget(),
-                        ),
-                      )
+                              child: SizedBox(
+                                height: context.ofHeight(1.0),
+                                width: context.ofWidth(1.0),
+                                child: const ShimmerLoadingWidget(),
+                              ),
+                            )
                           : Column(
-                        children: [
-                          for(int k in model.userActivityPageMap.keys)
-                            UserItemGroup(userEntities: model.userActivityPageMap[k]!)
-                        ],
-                      ),
-                      if(model.isFetchingNextPage)
+                              children: [
+                                for (int k in model.userActivityPageMap.keys)
+                                  UserItemGroup(
+                                      userEntities:
+                                          model.userActivityPageMap[k]!)
+                              ],
+                            ),
+                      if (model.isFetchingNextPage)
                         Center(
                           child: Container(
                               height: 30,
                               width: 30,
-                              margin: const EdgeInsets.only(bottom: 100, top: 20),
-                              child:  const CircularProgressIndicator(color: AppColors.appGrey)
-                          ),
+                              margin:
+                                  const EdgeInsets.only(bottom: 100, top: 20),
+                              child: const CircularProgressIndicator(
+                                  color: AppColors.appGrey)),
                         )
                     ],
                   )

@@ -1,2 +1,2 @@
-const CONNECT_TIMEOUT = 30000;
-const RECEIVE_TIMEOUT = 30000;
+const connectTimeOut = 30000;
+const receiveTimeOut = 30000;

@@ -6,12 +6,6 @@ import 'package:wayve_test_app/features/user_status/domain/entities/user_entity.
 import 'package:wayve_test_app/features/user_status/presentation/screens/user_detail_screen.dart';
 import 'package:wayve_test_app/features/user_status/presentation/screens/user_list_screen.dart';
 
-class NavigationService {
-  // final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
-  // void navigate(context, routeSettings) => Navigator.push(context, AppRouter.generateRoute(routeSettings));
-}
-
 class AppPages {
   static const String splash = "/splash";
   static const String userListScreen = "/home";
@@ -29,8 +23,7 @@ class AppRouter {
   static Page<dynamic> _errorPageBuilder(
       BuildContext context, GoRouterState state) {
     AppLogger.log(state.error);
-    return
-    MaterialPage<SplashScreen>(
+    return MaterialPage<SplashScreen>(
       key: state.pageKey,
       child: const SplashScreen(),
     );

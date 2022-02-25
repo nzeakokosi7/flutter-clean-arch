@@ -4,11 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:wayve_test_app/core/api/http_client.dart';
 
-
 void main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-
 
   Dio tDio = Dio();
   final dioAdapterMock = DioAdapter(dio: tDio);
@@ -26,7 +24,7 @@ void main() async {
 
       dioAdapterMock.onGet(
         path,
-            (request) {
+        (request) {
           return request.reply(200, responsePayload);
         },
         data: null,

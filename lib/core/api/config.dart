@@ -6,7 +6,6 @@ class Config {
   String? baseUrl;
 
   Config() {
-
     if (envStatus == Environment.prod) {
       baseUrl = ConfigReader.getProdUrl()!;
     } else {

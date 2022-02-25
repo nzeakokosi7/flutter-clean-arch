@@ -1,6 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
 import 'package:wayve_test_app/core/enums/user_status.dart';
 import 'package:wayve_test_app/core/ui/base/base_view_model.dart';
 import 'package:wayve_test_app/core/utils/app_logger.dart';
@@ -15,7 +14,7 @@ class UserViewModel extends BaseViewModel {
   final _userRepository = locator<UserRepository>();
 
   ScrollController scrollController = ScrollController();
-  
+
   int _pager = 0;
   int get pager => _pager;
   set pager(intValue) {
@@ -50,33 +49,39 @@ class UserViewModel extends BaseViewModel {
     _inactiveUserList = value;
     notifyListeners();
   }
-  
+
   final Map<int, List<UserEntity>> _userActivityPageMap = {};
   Map<int, List<UserEntity>> get userActivityPageMap => _userActivityPageMap;
 
   void pagination() {
     if ((scrollController.position.pixels ==
-        (scrollController.position.maxScrollExtent)) && isNextAvailable) {
+            (scrollController.position.maxScrollExtent)) &&
+        isNextAvailable) {
       fetchUsers(gotoNextPage: true);
     }
   }
 
-  void fetchUsers({bool gotoNextPage = false})async {
-    gotoNextPage ? isFetchingNextPage = true :  isLoading = true;
-    UserResponseModel userResponseModel = await _userRepository.getUserList(isNext: gotoNextPage);
+  void fetchUsers({bool gotoNextPage = false}) async {
+    gotoNextPage ? isFetchingNextPage = true : isLoading = true;
+    UserResponseModel userResponseModel =
+        await _userRepository.getUserList(isNext: gotoNextPage);
 
-    isNextAvailable = userResponseModel.metaData.pagination.links.next !=null;
-    if(userResponseModel.userEntities.isNotEmpty) {
-      activeUserList = userResponseModel.userEntities.where((i) => i.status == UserStatus.active).toList();
+    isNextAvailable = userResponseModel.metaData.pagination.links.next != null;
+    if (userResponseModel.userEntities.isNotEmpty) {
+      activeUserList = userResponseModel.userEntities
+          .where((i) => i.status == UserStatus.active)
+          .toList();
       _userActivityPageMap.putIfAbsent(pager, () => activeUserList);
       pager++;
 
-      inactiveUserList = userResponseModel.userEntities.where((i) => i.status == UserStatus.inactive).toList();
+      inactiveUserList = userResponseModel.userEntities
+          .where((i) => i.status == UserStatus.inactive)
+          .toList();
       _userActivityPageMap.putIfAbsent(pager, () => inactiveUserList);
       pager++;
       notifyListeners();
     }
-    gotoNextPage ? isFetchingNextPage = false :  isLoading = false;
+    gotoNextPage ? isFetchingNextPage = false : isLoading = false;
     notifyListeners();
   }
 
@@ -85,7 +90,9 @@ class UserViewModel extends BaseViewModel {
   }
 
   void initiateNetworkListener() {
-    networkListener = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) async {
+    networkListener = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) async {
       // Got a new connectivity status!
       await checkNetworkStats();
       if (isNetworkAvailable) {

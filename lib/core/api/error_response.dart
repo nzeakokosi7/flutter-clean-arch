@@ -39,8 +39,8 @@ class ErrorResponse {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-    "success": success,
-    "message": message,
-    "data": data.toJson(),
-  };
+        "success": success,
+        "message": message,
+        "data": data.toJson(),
+      };
 }

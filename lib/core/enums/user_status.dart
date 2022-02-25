@@ -1,4 +1,1 @@
-enum UserStatus {
-  active,
-  inactive
-}
+enum UserStatus { active, inactive }

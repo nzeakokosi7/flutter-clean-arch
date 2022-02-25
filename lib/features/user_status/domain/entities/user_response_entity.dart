@@ -6,8 +6,8 @@ class UserResponseEntity extends Equatable {
   final List<UserEntity> userEntities;
 
   const UserResponseEntity({
-     required this.metaData,
-     required this.userEntities,
+    required this.metaData,
+    required this.userEntities,
   });
 
   @override
@@ -17,9 +17,7 @@ class UserResponseEntity extends Equatable {
 class MetaEntity extends Equatable {
   final PaginationEntity pagination;
 
-  const MetaEntity({
-    required this.pagination
-  });
+  const MetaEntity({required this.pagination});
 
   @override
   List<Object> get props => [pagination];
@@ -32,13 +30,12 @@ class PaginationEntity extends Equatable {
   final int limit;
   final LinkEntity links;
 
-  const PaginationEntity({
-    required this.total,
-    required this.pages,
-    required this.page,
-    required this.limit,
-    required this.links
-  });
+  const PaginationEntity(
+      {required this.total,
+      required this.pages,
+      required this.page,
+      required this.limit,
+      required this.links});
 
   @override
   List<Object> get props => [total, pages, page, limit, links];

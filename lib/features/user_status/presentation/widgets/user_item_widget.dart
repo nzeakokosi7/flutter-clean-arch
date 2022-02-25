@@ -14,7 +14,7 @@ class UserListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: (){
+      onTap: () {
         context.push(AppPages.userDetailScreen, extra: userEntity);
       },
       contentPadding: EdgeInsets.zero,
@@ -35,5 +35,4 @@ class UserListItem extends StatelessWidget {
       ),
     );
   }
-
 }

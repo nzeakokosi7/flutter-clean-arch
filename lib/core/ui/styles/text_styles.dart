@@ -23,7 +23,6 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
   );
 
-
   static const TextStyle groupTitleTextStyle = TextStyle(
     color: AppColors.titleColor,
     fontSize: 16,
@@ -41,5 +40,4 @@ class AppTextStyles {
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
-
 }

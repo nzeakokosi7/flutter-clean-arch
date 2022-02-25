@@ -14,8 +14,11 @@ class UserItemGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String getTitle() {
-      return userEntities[0].status == UserStatus.active ? "Active" : "Inactive";
+      return userEntities[0].status == UserStatus.active
+          ? "Active"
+          : "Inactive";
     }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -27,18 +30,18 @@ class UserItemGroup extends StatelessWidget {
         const SizedBox(height: 10),
         Container(
           padding: const EdgeInsets.all(8),
-          decoration:  const BoxDecoration(
-            color: AppColors.itemBackground,
-            borderRadius: BorderRadius.all(Radius.circular(10))
-          ),
+          decoration: const BoxDecoration(
+              color: AppColors.itemBackground,
+              borderRadius: BorderRadius.all(Radius.circular(10))),
           child: Column(
             children: [
-              ...userEntities.map((item) => UserListItem(userEntity: item)).toList()
+              ...userEntities
+                  .map((item) => UserListItem(userEntity: item))
+                  .toList()
             ],
           ),
         )
       ],
     );
   }
-  
 }

@@ -1,4 +1,3 @@
 class Endpoints {
   Endpoints._();
-
 }

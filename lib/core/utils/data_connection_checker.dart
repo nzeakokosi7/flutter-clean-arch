@@ -20,18 +20,18 @@ class DataConnectionChecker {
   /// here:
   /// - https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
   /// - https://www.google.com/search?q=dns+server+port
-  static const int DEFAULT_PORT = 53;
+  static const int defaultPort = 53;
 
   /// Default timeout is 10 seconds.
   ///
   /// Timeout is the number of seconds before a request is dropped
   /// and an address is considered unreachable
-  static const Duration DEFAULT_TIMEOUT = const Duration(seconds: 10);
+  static const Duration defaultTimeOut = Duration(seconds: 10);
 
   /// Default interval is 10 seconds
   ///
   /// Interval is the time between automatic checks
-  static const Duration DEFAULT_INTERVAL = const Duration(seconds: 10);
+  static Duration defaultInterval = const Duration(seconds: 10);
 
   /// Predefined reliable addresses. This is opinionated
   /// but should be enough. See https://www.dnsperf.com/#!dns-resolvers
@@ -56,28 +56,28 @@ class DataConnectionChecker {
   /// | 8.8.4.4        | Google     | https://developers.google.com/speed/public-dns/ |
   /// | 208.67.222.222 | OpenDNS    | https://use.opendns.com/                        |
   /// | 208.67.220.220 | OpenDNS    | https://use.opendns.com/                        |
-  static final List<AddressCheckOptions> DEFAULT_ADDRESSES = List.unmodifiable([
+  static final List<AddressCheckOptions> defaultAddresses = List.unmodifiable([
     AddressCheckOptions(
       InternetAddress('1.1.1.1'),
-      port: DEFAULT_PORT,
-      timeout: DEFAULT_TIMEOUT,
+      port: defaultPort,
+      timeout: defaultTimeOut,
     ),
     AddressCheckOptions(
       InternetAddress('8.8.4.4'),
-      port: DEFAULT_PORT,
-      timeout: DEFAULT_TIMEOUT,
+      port: defaultPort,
+      timeout: defaultTimeOut,
     ),
     AddressCheckOptions(
       InternetAddress('208.67.222.222'),
-      port: DEFAULT_PORT,
-      timeout: DEFAULT_TIMEOUT,
+      port: defaultPort,
+      timeout: defaultTimeOut,
     ),
   ]);
 
   /// A list of internet addresses (with port and timeout) to ping.
   ///
   /// These should be globally available destinations.
-  /// Default is [DEFAULT_ADDRESSES].
+  /// Default is [defaultAddresses].
   ///
   /// When [hasConnection] or [connectionStatus] is called,
   /// this utility class tries to ping every address in this list.
@@ -86,7 +86,7 @@ class DataConnectionChecker {
   /// but you can, of course, supply your own.
   ///
   /// See [AddressCheckOptions] for more info.
-  List<AddressCheckOptions> addresses = DEFAULT_ADDRESSES;
+  List<AddressCheckOptions> addresses = defaultAddresses;
 
   /// This is a singleton that can be accessed like a regular constructor
   /// i.e. DataConnectionChecker() always returns the same instance.
@@ -111,8 +111,8 @@ class DataConnectionChecker {
   /// Ping a single address. See [AddressCheckOptions] for
   /// info on the accepted argument.
   Future<AddressCheckResult> isHostReachable(
-      AddressCheckOptions options,
-      ) async {
+    AddressCheckOptions options,
+  ) async {
     Socket? sock;
     try {
       sock = await Socket.connect(
@@ -166,8 +166,8 @@ class DataConnectionChecker {
   /// If that's the case [onStatusChange] emits an update only if
   /// there's change from the previous status.
   ///
-  /// Defaults to [DEFAULT_INTERVAL] (10 seconds).
-  Duration checkInterval = DEFAULT_INTERVAL;
+  /// Defaults to [defaultInterval] (10 seconds).
+  Duration checkInterval = defaultInterval;
 
   // Checks the current status, compares it with the last and emits
   // an event only if there's a change and there are attached listeners
@@ -202,14 +202,14 @@ class DataConnectionChecker {
 
   // controller for the exposed 'onStatusChange' Stream
   final StreamController<DataConnectionStatus> _statusController =
-  StreamController.broadcast();
+      StreamController.broadcast();
 
   /// Subscribe to this stream to receive events whenever the
   /// [DataConnectionStatus] changes. When a listener is attached
   /// a check is performed immediately and the status ([DataConnectionStatus])
   /// is emitted. After that a timer starts which performs
   /// checks with the specified interval - [checkInterval].
-  /// Default is [DEFAULT_INTERVAL].
+  /// Default is [defaultInterval].
   ///
   /// *As long as there's an attached listener, checks are being performed,
   /// so remember to dispose of the subscriptions when they're no longer needed.*
@@ -269,8 +269,8 @@ class DataConnectionChecker {
 /// This class should be pretty self-explanatory.
 /// If [AddressCheckOptions.port]
 /// or [AddressCheckOptions.timeout] are not specified, they both
-/// default to [DataConnectionChecker.DEFAULT_PORT]
-/// and [DataConnectionChecker.DEFAULT_TIMEOUT]
+/// default to [DataConnectionChecker.defaultPort]
+/// and [DataConnectionChecker.defaultTimeOut]
 /// Also... yeah, I'm not great at naming things.
 class AddressCheckOptions {
   final InternetAddress address;
@@ -278,10 +278,10 @@ class AddressCheckOptions {
   final Duration timeout;
 
   AddressCheckOptions(
-      this.address, {
-        this.port = DataConnectionChecker.DEFAULT_PORT,
-        this.timeout = DataConnectionChecker.DEFAULT_TIMEOUT,
-      });
+    this.address, {
+    this.port = DataConnectionChecker.defaultPort,
+    this.timeout = DataConnectionChecker.defaultTimeOut,
+  });
 
   @override
   String toString() => "AddressCheckOptions($address, $port, $timeout)";
@@ -294,9 +294,9 @@ class AddressCheckResult {
   final bool isSuccess;
 
   AddressCheckResult(
-      this.options,
-      this.isSuccess,
-      );
+    this.options,
+    this.isSuccess,
+  );
 
   @override
   String toString() => "AddressCheckResult($options, $isSuccess)";

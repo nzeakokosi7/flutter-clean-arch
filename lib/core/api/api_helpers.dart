@@ -4,10 +4,10 @@ class APIHelpers {
   APIHelpers._();
 
   static dynamic handleResponse(
-      ServiceState response, {
-        required Function(SuccessState) onSuccess,
-        Function(ErrorState)? onError,
-      }) {
+    ServiceState response, {
+    required Function(SuccessState) onSuccess,
+    Function(ErrorState)? onError,
+  }) {
     if (response is SuccessState) {
       onSuccess(response);
     } else if (response is ErrorState && onError != null) {

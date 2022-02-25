@@ -9,13 +9,7 @@ class UserEntity extends Equatable {
   final UserGender? gender;
   final UserStatus? status;
 
-  const UserEntity({
-    this.id,
-    this.name,
-    this.email,
-    this.gender,
-    this.status
-});
+  const UserEntity({this.id, this.name, this.email, this.gender, this.status});
 
   @override
   List<Object?> get props => [id, name, email, status];

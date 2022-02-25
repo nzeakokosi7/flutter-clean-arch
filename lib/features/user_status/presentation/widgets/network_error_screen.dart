@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wayve_test_app/core/ui/styles/text_styles.dart';
 import 'package:wayve_test_app/core/utils/extensions.dart';
 
 class NetworkErrorScreen extends StatelessWidget {
@@ -24,15 +22,13 @@ class NetworkErrorScreen extends StatelessWidget {
             style: TextStyle(color: Colors.red, fontSize: 15),
           ),
           TextButton(
-              onPressed: ()=>refreshAction,
+              onPressed: () => refreshAction,
               child: const Text(
-                  "Refresh",
+                "Refresh",
                 style: TextStyle(color: Colors.blue, fontSize: 13),
-              )
-          )
+              ))
         ],
       ),
     );
   }
-
 }

@@ -34,7 +34,7 @@ class UserListScreen extends StatelessWidget {
             child: Column(
               children: [
                 if (!model.isNetworkAvailable)
-                  NetworkErrorScreen(refreshAction: ()=>{})
+                  NetworkErrorScreen(refreshAction: () => {})
                 else
                   Column(
                     children: [

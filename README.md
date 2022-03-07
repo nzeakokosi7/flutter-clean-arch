@@ -14,7 +14,7 @@ You can see the test app [here](https://github.com/nzeakokosi7/wayve_flutter_tes
 Download or clone this repo by using the link below:
 
 ```
-https://github.com/nzeakokosi7/wayve_flutter_test
+https://github.com/nzeakokosi7/flutter-clean-arch
 ```
 
 **Step 2:**
